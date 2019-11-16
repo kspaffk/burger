@@ -1,7 +1,7 @@
 const connection = require("./connection");
 
 var orm = {
-    selectAll: function(table) {
+    selectAll: function(table, cb) {
         var selectQuery = "SELECT * FROM ??";
         connection.query(selectQuery, [table], function(err, results) {
             if (err) throw err;
@@ -9,7 +9,7 @@ var orm = {
         });
     },
 
-    insertOne: function(table, colName, colValue) {
+    insertOne: function(table, colName, colValue, cb) {
         var insertQuery = "INSERT INTO ?? (??) VALUES (?)";
         connection.query(insertQuery, [table, colName, colValue], function(
             err
@@ -18,7 +18,7 @@ var orm = {
         });
     },
 
-    updateOne: function(table, colName, colValue, colIdName, colId) {
+    updateOne: function(table, colName, colValue, colIdName, colId, cb) {
         var updateQuery = "UPDATE ?? SET ?? = ? WHERE ?? = ?";
         connection.query(
             updateQuery,
