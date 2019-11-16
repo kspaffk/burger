@@ -3,9 +3,9 @@ const connection = require("./connection");
 var orm = {
     selectAll: function(table, cb) {
         var selectQuery = "SELECT * FROM ??";
-        connection.query(selectQuery, [table], function(err, results) {
+        connection.query(selectQuery, [table], function(err, data) {
             if (err) throw err;
-            console.log(results);
+            cb(data);
         });
     },
 
