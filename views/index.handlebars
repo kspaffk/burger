@@ -1,13 +1,22 @@
-<div>
+<div class="not-eaten">
+    <h1>Ready to Be Eaten</h1>
+    <hr>
     <ol>
         {{#each burgers}}
-        <li>
-            {{burger_name}}
-        </li>
-        <button class="eat-burger">Eat Me</button>
+            {{#unless devoured}}
+                {{> burgers/burger-list eaten=false}}
+            {{/unless}}
         {{/each}}
     </ol>
 </div>
-<div>
-
+<div class="eaten">
+    <h1>Eaten and Enjoyed</h1>
+    <hr>
+    <ol>
+        {{#each burgers}}
+            {{#if devoured}}
+                {{> burgers/burger-list eaten=true}}
+            {{/if}}
+        {{/each}}
+    </ol>
 </div>

@@ -11,10 +11,9 @@ var orm = {
 
     insertOne: function(table, colName, colValue, cb) {
         var insertQuery = "INSERT INTO ?? (??) VALUES (?)";
-        connection.query(insertQuery, [table, colName, colValue], function(
-            err
-        ) {
+        connection.query(insertQuery, [table, colName, colValue], function(err, data) {
             if (err) throw err;
+            cb(data);
         });
     },
 
@@ -23,10 +22,10 @@ var orm = {
         connection.query(
             updateQuery,
             [table, colName, colValue, colIdName, colId],
-            function(err) {
+            function(err, data) {
                 if (err) throw err;
-            }
-        );
+                cb(data);
+            });
     }
 };
 

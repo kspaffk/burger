@@ -12,4 +12,16 @@ router.get('/', function(req, res) {
     });
 });
 
+router.post('/api/burger', function(req, res) {
+    burger.addBurger(req.body.name, function(data) {
+        res.json(data);
+    });
+});
+
+router.put('/api/burger/:id', function(req, res) {
+    burger.eatBurger(req.params.id, function(data) {
+        res.json(data);
+    });
+});
+
 module.exports = router;
